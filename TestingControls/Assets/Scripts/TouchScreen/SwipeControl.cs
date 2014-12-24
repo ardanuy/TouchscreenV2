@@ -33,7 +33,7 @@ public class SwipeControl : TouchInput {
 	public float yPixelDistanceThreshold = 45f;
 	public float distanceThreshold = 30f;
 	private float countedTime = 0f;
-	public float timeAmountForSwipe = 0.7f;
+	public float timeAmountForSwipe = 0.9f;
 
 	// reference to PlayerAction
 	private PlayerAction playerAction;
@@ -71,7 +71,7 @@ public class SwipeControl : TouchInput {
 	 */
 	void OnTouchDown(Touch touch){
 		lastDownPointPosition = touch.position;
-		countedTime = Time.time;
+		countedTime = Time.realtimeSinceStartup;
 	} // end of OnTouchDown
 	
 	
@@ -95,7 +95,7 @@ public class SwipeControl : TouchInput {
 	private void SwipeDirectionRecognition(){
 		
 		// if distance is greater than a threshold and the swipe was fast enough
-		if(distance > distanceThreshold && Time.time < countedTime){
+		if(distance > distanceThreshold && Time.realtimeSinceStartup < countedTime){
 			// there was a swipe on the touch screen
 			
 			if(isNorthMove()){
